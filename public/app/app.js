@@ -1,35 +1,36 @@
- var app = angular.module('QueuePlate', []);
+ var app = angular.module('QueuePlate', ['ui.router']);
 
-// app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 
-// $httpProvider.interceptors.push('AuthInterceptor');
+$httpProvider.interceptors.push('AuthInterceptor');
 
-//  $urlRouterProvider.otherwise('/');
+$urlRouterProvider.otherwise('/');
 
-//  $stateProvider
-//    .state('home', {
-//      url: '/',
-//      templateUrl: 'public/app/home/home.html',
-//    })
+ $stateProvider
 
-//    .state('login', {
-//      url: '/login',
-//      templateUrl: 'public/app/auth/login.html',
-//      controller: 'loginCtrl'
-//    })
+   .state('home', {
+     url: '/',
+     templateUrl: 'app/home/home.html',
+   })
 
-//   .state('signup', {
-// 		url: '/signup',
-// 		templateUrl: 'public/app/auth/signup.html',
-// 		controller: 'sigunupCtrl'
+   .state('login', {
+     url: '/login',
+     templateUrl: 'app/auth/login.html',
+     controller: 'loginCtrl'
+   })
 
-// 	})
+  .state('signup', {
+		url: '/signup',
+		templateUrl: 'app/auth/signup.html',
+		controller: 'signupCtrl'
 
-// .state('dashboard', {
-// 		url: '/dashboard',
-// 		templateUrl: 'public/app/dashboard/dashboard.html'
-// 	})
+	})
 
-// $locationProvider.html5Mode(true);
+.state('dashboard', {
+		url: '/dashboard',
+		templateUrl: 'app/dashboard/dashboard.html'
+	})
 
-// });
+$locationProvider.html5Mode(true);
+
+});

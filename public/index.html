@@ -19,13 +19,12 @@
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
 
-  <script type="text/javascript" src="app/app.js"></script>
 
 </head>
 
 <header>
       
-  <ul>
+  <ul ng-controller="loginCtrl">
     <li><a ui-sref="login">Login</a></li>
     <li><a ui-sref="signup">Signup</a></li>
     <li><a ui-sref="dashboard">Dashboard</a></li>
@@ -34,19 +33,24 @@
 
 </header>
    
-   <body> hello user story
-   {{2+2}}
-  <!-- <body ng-controller="authCtrl">
-        <div ui-view></div> -->
+   <body> 
+<!--   <body ng-controller="authCtrl"> -->
+    <main class="container">
+        <div ui-view></div>
+    </main>
   
   <!-- JAVASCRIPT FILES -->
   
+  <script type="text/javascript" src="app/app.js"></script>
 
 
   <!-- SERVICES -->
-
+<script type="text/javascript" src="app/auth/loginService.js"></script>
+<script type="text/javascript" src="app/auth/signupService.js"></script>
 
   <!-- CONTROLLERS -->
+  <script type="text/javascript" src="app/auth/loginCtrl.js"></script>
+  <script type="text/javascript" src="app/auth/signupCtrl.js"></script>
 
   </body>
 </html>

@@ -1,45 +1,45 @@
 var app = angular.module('QueuePlate')
 
-app.service('loginService', function($http, $q, AuthToken) {
+app.service('loginService', function($http, $q, authTokenService) {
 
-	var authService = {};
+	var loginService = {};
 
-	authService.login = function(username, password) {
+	loginService.login = function(username, password) {
 
 		return $http.post('/api/login', {
 			username: username, 
 			password: password
 
 		})
-		.success(function)
-			AuthToken.setToken(data.token)
+		.success(function(data) {
+			authTokenService.setToken(data.token)
 			return data;
 		})
 	}
 
-	authService.logout = function() {
-		Authtoken.setToken();
+	loginService.logout = function() {
+		authTokenService.setToken();
 	}
 
-	authService.isLoggedIn = function() {
-		if(AuthToken.getToken())
+	loginService.isLoggedIn = function() {
+		if(authTokenService.getToken())
 				return true;
 		else
 			return false;
 	}
 
-	authService.getUser = function() {
-		if(AuthToken.getToken())
+	loginService.getUser = function() {
+		if(authTokenService.getToken())
 			return $http.get('/api/me');
 		else
 			return $q.reject({message: "User has no token"})
 	}
 
-	return authService;
+	return loginService;
 
 });
 
-app.service('AuthToken', function($window) {
+app.service('authTokenService', function($window) {
 
 	var authTokenService = {};
 
@@ -59,13 +59,13 @@ app.service('AuthToken', function($window) {
 	return authTokenService;
 })
 
-app.service('AuthInterceptor', function($q, $location, AuthToken) {
+app.service('AuthInterceptor', function($q, $location, authTokenService) {
 
 	var interceptorService = {};
 
 	interceptorService.request = function(config) {
 
-		var token = AuthToken.getToken();
+		var token = authTokenService.getToken();
 
 		if(token) {
 
